@@ -1,0 +1,12 @@
+.linkdec {
+  text-decoration: none;
+  padding: 0px 20px;
+  color: #000;
+}
+.Main {
+  background-color: rgb(236, 235, 235);
+  min-height: 100vh;
+}
+.center {
+  text-align: center;
+}
