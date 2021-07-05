@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-spinners/BeatLoader";
 import { fetchItem, buyItem, addCart } from "../reduxEcart/Action";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Card,
   CardActionArea,
@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import "./style.css";
 function Mens(props) {
+  const history = useHistory();
   return props.loading ? (
     <div className="center">
       <Loader />
@@ -59,16 +60,20 @@ function Mens(props) {
                       >
                         Add to cart
                       </Button>
-                      <Link to="/BuyNow">
-                        <Button
-                          onClick={() => props.buyItem(product)}
-                          size="medium"
-                          variant="contained"
-                          color="secondary"
-                        >
-                          View Detail
-                        </Button>
-                      </Link>
+
+                      <Button
+                        onClick={() => {
+                          let id = product.id;
+                          let category = product.category;
+                          props.buyItem(product);
+                          history.push(`BuyNow/${category}/${id}`);
+                        }}
+                        size="medium"
+                        variant="contained"
+                        color="secondary"
+                      >
+                        View Detail
+                      </Button>
                     </CardActions>
                   </Card>
                 </Grid>

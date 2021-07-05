@@ -2,13 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-spinners/BeatLoader";
 import { fetchItem, buyItem } from "../reduxEcart/Action";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Card,
   CardActionArea,
   CardContent,
   CardActions,
-  CardMedia,
   Button,
   Typography,
   Grid,
@@ -16,6 +15,7 @@ import {
 } from "@material-ui/core";
 import "./style.css";
 function AllItems(props) {
+  const history = useHistory();
   return props.loading ? (
     <div className="center">
       <Loader />
@@ -24,10 +24,16 @@ function AllItems(props) {
     <h2>{props.error}</h2>
   ) : (
     <div>
-      <Link to="/">
-        <h4> Back</h4>
-      </Link>
       <Container>
+        <Button
+          onClick={() => history.goBack()}
+          variant="contained"
+          color="secondary"
+        >
+          Back
+        </Button>
+        <br />
+        <br />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <img height={400} width={400} src={props.item.image} />
